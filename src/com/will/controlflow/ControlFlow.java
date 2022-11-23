@@ -1,5 +1,6 @@
 package com.will.controlflow;
 
+
 import java.util.Scanner;
 
 public class ControlFlow {
@@ -9,8 +10,9 @@ public class ControlFlow {
 		//checkLessOrGreater();
 		//checkTenOrTwenty();
 		//checkGrades();
-		checkDayOfTheWeek();
-	}
+		//checkDayOfTheWeek();	
+		calculateIncomeTax();
+		}
 	
 	static void checkLessThan() {
 		int x = 7;
@@ -87,5 +89,77 @@ public class ControlFlow {
 			break;
 		}
 		userDay.close();
+	}
+	static void calculateIncomeTax() {
+		Scanner userTax = new Scanner(System.in);
+		System.out.println("Enter your income: ");
+		int income = userTax.nextInt();
+		System.out.println("What is your filing status: /n1 = Single; 2 = Married Filing Jointly or Qualified Widower; 3 = Married filing separately; 4 = Head of Household");
+		int filingStatus = userTax.nextInt();
+		int taxRate = 0;
+		
+		switch (filingStatus) {
+		case 1: if( income >= 327916 ){
+			taxRate = 35;
+		} else if (income >= 171551) {
+			taxRate = 33;
+		} else if (income >= 82251) {
+			taxRate = 28;
+		} else if (income >= 33951) {
+			taxRate = 25;
+		} else if (income >= 8351) {
+			taxRate = 15;
+		} else {
+			taxRate = 10;
+		} break;
+		case 2: if( income >= 327916 ){
+			taxRate = 35;
+		} else if (income >= 208851) {
+			taxRate = 33;
+		} else if (income >= 137051) {
+			taxRate = 28;
+		} else if (income >= 67901) {
+			taxRate = 25;
+		} else if (income >= 16701) {
+			taxRate = 15;
+		} else {
+			taxRate = 10;
+		} break;
+		
+		case 3: if( income >= 186476 ){
+			taxRate = 35;
+		} else if (income >= 104426) {
+			taxRate = 33;
+		} else if (income >= 68526) {
+			taxRate = 28;
+		} else if (income >= 33951) {
+			taxRate = 25;
+		} else if (income >= 8351) {
+			taxRate = 15;
+		} else {
+			taxRate = 10;
+		} break;
+		
+		case 4: if( income >= 327916 ){
+			taxRate = 35;
+		} else if (income >= 190201) {
+			taxRate = 33;
+		} else if (income >= 117451) {
+			taxRate = 28;
+		} else if (income >= 45501) {
+			taxRate = 25;
+		} else if (income >= 11951) {
+			taxRate = 15;
+		} else {
+			taxRate = 10;
+		} break;
+		
+		default: System.out.println("Enter a valid filing status");
+		  break;
+		}
+		
+		double taxAmount = income * taxRate / 100.00;
+		System.out.printf("You owe $%.2f", taxAmount + " in taxes");
+		userTax.close();
 	}
 }
