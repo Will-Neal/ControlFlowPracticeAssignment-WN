@@ -1,6 +1,8 @@
 package com.will.controlflow;
 
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ControlFlow {
@@ -94,10 +96,9 @@ public class ControlFlow {
 		Scanner userTax = new Scanner(System.in);
 		System.out.println("Enter your income: ");
 		int income = userTax.nextInt();
-		System.out.println("What is your filing status: /n1 = Single; 2 = Married Filing Jointly or Qualified Widower; 3 = Married filing separately; 4 = Head of Household");
+		System.out.println("What is your filing status: \n1 = Single; 2 = Married Filing Jointly or Qualified Widower; 3 = Married filing separately; 4 = Head of Household");
 		int filingStatus = userTax.nextInt();
 		int taxRate = 0;
-		
 		switch (filingStatus) {
 		case 1: if( income >= 327916 ){
 			taxRate = 35;
@@ -159,7 +160,9 @@ public class ControlFlow {
 		}
 		
 		double taxAmount = income * taxRate / 100.00;
-		System.out.printf("You owe $%.2f", taxAmount + " in taxes");
+		NumberFormat usDollars = NumberFormat.getCurrencyInstance(Locale.US);
+		String finalTax = usDollars.format(taxAmount);
+		System.out.printf("You owe " + finalTax + " in taxes");
 		userTax.close();
 	}
 }
